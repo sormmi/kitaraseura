@@ -13,7 +13,7 @@ export const HeaderWrapper = styled.div`
   }
 `
 export const Branding = styled.div`
-  margin: auto 0;
+  margin: auto 10px;
   min-width: 100px;
 
   a {

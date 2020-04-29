@@ -1,6 +1,7 @@
 import React from "react"
 import { Link } from "gatsby"
 import { MenuWrapper, Nav, OverrideGlobalStyle } from "./MobileMenu.styles"
+import { linkResolver } from "gatsby-source-prismic-graphql"
 
 const MobileMenu = ({ menuOpen, items }) => (
   <>
@@ -9,7 +10,7 @@ const MobileMenu = ({ menuOpen, items }) => (
       <Nav>
         {items.map(menu => (
           <li key={menu.link_name}>
-            <Link to={`/${menu.link._meta.uid}`} activeClassName="active">
+            <Link to={linkResolver(menu.link._meta)} activeClassName="active">
               {menu.link_name}
             </Link>
           </li>

@@ -42,7 +42,10 @@ export const query = graphql`
     $paginationNextLang: String!
   ) {
     prismic {
-      allHistorypages(uid: $uid) {
+      allHistorypages(
+        uid: $uid
+        sortBy: sequence_number_ASC
+      ) {
         edges {
           node {
             _meta {

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const HamburgerIcon = styled.div`
   display: block;
   width: 30px;
-  margin: auto 10px;
+  margin: auto 20px;
   z-index: 1000;
   cursor: pointer;
   

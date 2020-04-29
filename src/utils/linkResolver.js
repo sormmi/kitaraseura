@@ -10,7 +10,7 @@ module.exports = {
       return '/tapahtumat'
     }
 
-    if (doc.uid === 'info') return '/info'
+    if (doc.uid === 'tietoa') return '/tietoa'
     if (doc.uid === 'linkit') return '/linkit'
 
     return '/';
