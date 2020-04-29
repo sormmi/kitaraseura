@@ -19,6 +19,7 @@ module.exports = {
       options: {
         repositoryName: 'kotkan-kitaraseura',
         defaultLang: 'fi',
+        previews: false,
         pages: [{
           type: 'Homepage',
           path: '/',

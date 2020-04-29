@@ -5,6 +5,7 @@ import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import { RichText } from "prismic-reactjs";
 import SliceZone from "../components/SliceZone"
+import get from "lodash/get"
 
 const EventWrapper = styled.div`
   display: grid;
@@ -41,20 +42,19 @@ const EventFieldHeaderItem = styled.div`
   margin-bottom: 6px;
   color: ${ props => props.theme.colors.textDark };
   font-weight: ${ props => props.bold ? 'bold': 'normal' };
- 
 `;
 
 const EventPage = ({ data }) => {
 
-  const body = data.prismic.allEventpages.edges[0].node.body;
-  const page = data.prismic.allEventpages.edges[0].node._meta.uid;
+  const body = get(data, 'prismic.allEventpages.edges.0.node.body', []);
+  const page = get(data, 'prismic.allEventpages.edges.0.node._meta.uid', 'tapahtumat');
 
   return (
     <Layout>
       <SEO title={page} />
 
       <SliceZone
-        body={data.prismic.allEventpages.edges[0].node.body}
+        body={body}
         page={page}
       />
 

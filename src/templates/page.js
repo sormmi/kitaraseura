@@ -4,11 +4,12 @@ import Layout from "../components/Layout";
 import SEO from "../components/seo";
 import SliceZone from "../components/SliceZone"
 import { RichText } from "prismic-reactjs"
+import get from "lodash/get"
 
 const Page = ({ data }) => {
 
-  const body = data.prismic.allPages.edges[0].node.body;
-  const page = data.prismic.allPages.edges[0].node._meta.uid;
+  const body = get(data, 'prismic.allPages.edges.0.node.body', []);
+  const page = get(data, 'prismic.allPages.edges.0..node._meta.uid', 'page');
 
   return (
     <Layout>

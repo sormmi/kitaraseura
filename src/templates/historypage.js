@@ -116,13 +116,14 @@ const HistoryPage = props => {
   } = props;
 
   const title = get(props.data, 'prismic.allHistorypages.edges.0.node.title', []);
-  const content = get(props.data, 'prismic.allHistorypages.edges.0.node.history_content')
+  const content = get(props.data, 'prismic.allHistorypages.edges.0.node.history_content');
+  const body = get(props.data, 'prismic.allHistorypages.edges.0.node.body', []);
 
   return (
     <Layout>
 
       <SliceZone
-        body={props.data.prismic.allHistorypages.edges[0].node.body}
+        body={body}
         page={title}
       />
 
