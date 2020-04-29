@@ -1,17 +1,49 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Kotkan kitaraseura ry`,
+    description: `Etelä-Kymenlaakson kitaramusiikin edistämiseksi.`,
+    author: `@sormmi`,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
       },
+    },
+    {
+      resolve: 'gatsby-source-prismic-graphql',
+      options: {
+        repositoryName: 'kotkan-kitaraseura',
+        defaultLang: 'fi',
+        pages: [{
+          type: 'Homepage',
+          path: '/',
+          match: '/',
+          component: require.resolve('./src/templates/homepage.js'),
+        },
+        {
+          type: 'Page',
+          path: '/page',
+          match: '/:uid', // pages will be generated under this pattern
+          component: require.resolve('./src/templates/page.js'),
+        },
+        {
+          type: 'Eventpage',
+          path: '/',
+          match: '/:uid',
+          component: require.resolve('./src/templates/eventpage.js'),
+        },
+        {
+          type: 'Historypage',
+          match: '/historia/:uid',
+          path: '/',
+          component: require.resolve('./src/templates/historypage.js'),
+        }],
+      }
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
@@ -27,6 +59,17 @@ module.exports = {
         icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Lato`,
+            variants: [`300`, `400`, `700`, `900`],
+          }
+        ],
+      },
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
