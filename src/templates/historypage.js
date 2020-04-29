@@ -1,5 +1,4 @@
 import { graphql, Link } from 'gatsby';
-//import { linkResolver } from 'gatsby-source-prismic-graphql';
 import get from 'lodash/get';
 import { RichText } from 'prismic-reactjs';
 import React from 'react';
@@ -9,6 +8,7 @@ import styled from "styled-components";
 import LeftIcon from "../images/arrow-left.svg"
 import RightIcon from "../images/arrow-right.svg"
 import SliceZone from "../components/SliceZone"
+import { linkResolver } from "gatsby-source-prismic-graphql"
 
 export const PageNavigationWrapper = styled.div`
   display: flex;
@@ -44,7 +44,6 @@ export const query = graphql`
     prismic {
       allHistorypages(
         uid: $uid
-        sortBy: sequence_number_ASC
       ) {
         edges {
           node {
@@ -52,6 +51,7 @@ export const query = graphql`
               uid
             }
             history_content
+            sequence_number
             body {
               ... on PRISMIC_HistorypageBodyHero {
                 type
@@ -85,12 +85,11 @@ export const query = graphql`
 `;
 
 const Pagination = ({ nextHistory, prevHistory }) => (
-
     <PageNavigationWrapper>
 
       <ImgWrapper>
         {prevHistory ? (
-          <Link to={`/historia/${prevHistory.uid}`} aria-label="Previous history">
+          <Link to={linkResolver(prevHistory)} aria-label="Prev history">
             <input type="image" alt="left-nav" src={LeftIcon} />
           </Link>
         ) : (
@@ -100,7 +99,7 @@ const Pagination = ({ nextHistory, prevHistory }) => (
 
       <ImgWrapper>
         {nextHistory ? (
-          <Link to={`/historia/${nextHistory.uid}`} aria-label="Next history">
+          <Link to={linkResolver(nextHistory)} aria-label="Next history">
             <input type="image" alt="left-nav" src={RightIcon} />
           </Link>
         ) : (

@@ -42,6 +42,7 @@ module.exports = {
           type: 'Historypage',
           match: '/historia/:uid',
           path: '/',
+          sortBy: 'sequence_number_ASC',
           component: require.resolve('./src/templates/historypage.js'),
         }],
       }
