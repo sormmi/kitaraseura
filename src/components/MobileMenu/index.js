@@ -10,7 +10,7 @@ const MobileMenu = ({ menuOpen, items }) => (
       <Nav>
         {items.map(menu => (
           <li key={menu.link_name}>
-            <Link to={linkResolver(menu.link._meta)} activeClassName="active">
+            <Link to={linkResolver(menu.link._meta)}>
               {menu.link_name}
             </Link>
           </li>

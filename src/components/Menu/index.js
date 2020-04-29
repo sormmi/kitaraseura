@@ -9,7 +9,7 @@ const Menu = ({ items }) => (
 
         return (
             <li key={menu.link_name}>
-              <Link to={linkResolver(menu.link._meta)} activeClassName="active">
+              <Link to={linkResolver(menu.link._meta)}>
                 {menu.link_name}
               </Link>
             </li>
