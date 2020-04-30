@@ -12,6 +12,7 @@ const EventWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(2, auto);
   gap: 10px;
+  row-gap: 0;
   
   p {
     font-size: 1rem;
@@ -82,7 +83,7 @@ const EventPage = ({ data }) => {
                       <EventFieldHeader>
                         <DateWrapper>
                           <img src={CalendarIcon} alt="date"/>
-                          {field.event.event_data}
+                          {field.event.event_date}
                         </DateWrapper>
                         <EventLocation>{field.event.event_location}</EventLocation>
                       </EventFieldHeader>
@@ -134,7 +135,7 @@ export const query = graphql`
                 fields {
                   event {
                     ... on PRISMIC_Event {
-                      event_data
+                      event_date
                       event_name
                       event_description
                       event_location
