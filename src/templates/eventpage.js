@@ -6,6 +6,7 @@ import SEO from "../components/seo";
 import { RichText } from "prismic-reactjs";
 import SliceZone from "../components/SliceZone"
 import get from "lodash/get"
+import CalendarIcon from "../images/calendar.svg"
 
 const EventWrapper = styled.div`
   display: grid;
@@ -16,7 +17,7 @@ const EventWrapper = styled.div`
     font-size: 1rem;
   }
   
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 800px) {
     grid-template-columns: repeat(3, auto);
   }
   
@@ -37,12 +38,21 @@ const EventFieldHeader = styled.div`
   border-bottom: 1px solid #eee;
 `;
 
-const EventFieldHeaderItem = styled.div`
-  flex-grow: 2;
-  margin-bottom: 6px;
-  color: ${ props => props.theme.colors.textDark };
-  font-weight: ${ props => props.bold ? 'bold': 'normal' };
+const EventLocation  = styled.div`
+  font-size: 0.8rem;
+  margin: auto 0;
 `;
+
+const DateWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  font-size: 0.8rem;
+
+  img {
+    margin: 0 10px 0 0;
+  }
+`
 
 const EventPage = ({ data }) => {
 
@@ -68,10 +78,15 @@ const EventPage = ({ data }) => {
                 { body.fields.map((field, i) => (
 
                     <EventFields key={i}>
+
                       <EventFieldHeader>
-                        <EventFieldHeaderItem bold>{field.event.event_data}</EventFieldHeaderItem>
-                        <EventFieldHeaderItem>{field.event.event_location}</EventFieldHeaderItem>
+                        <DateWrapper>
+                          <img src={CalendarIcon} alt="date"/>
+                          {field.event.event_data}
+                        </DateWrapper>
+                        <EventLocation>{field.event.event_location}</EventLocation>
                       </EventFieldHeader>
+
                       <div>{field.event.event_name}</div>
                       <RichText render={field.event.event_description} />
                     </EventFields>

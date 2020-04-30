@@ -7,6 +7,7 @@ export const colors = {
   blueShade1: "#215973",
   blueShade2: "#6fadc6",
   blueShade3: "#d1e1e9",
+  blueShade4: "#3b7d9c",
   redShade: "#bf3030"
 }
 
@@ -17,7 +18,8 @@ export const lightTheme = {
     textDark: colors.blueShade1,
     textMain: colors.blueShade2,
     textSecondary: colors.deepDarkGray,
-    textDanger: colors.redShade
+    textDanger: colors.redShade,
+    textLink: colors.blueShade4
   }
 }
 
@@ -28,7 +30,8 @@ export const darkTheme = {
     textDark: colors.blueShade3,
     textMain: colors.blueShade2,
     textSecondary: colors.blueShade3,
-    textDanger: colors.redShade
+    textDanger: colors.redShade,
+    textLink: colors.blueShade4
   }
 }
 
@@ -89,8 +92,14 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
   
+  li {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
   a {
     line-height: 1.5;
+    color: ${ props => props.theme.colors.textLink };
   }
   
   a:link {
@@ -99,11 +108,6 @@ export const GlobalStyles = createGlobalStyle`
   
   a:visited {
     text-decoration: none;
-  }
-  
-  li {
-    line-height: 1.5;
-    font-size: 1.1em;
   }
   
   .container {

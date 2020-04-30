@@ -1,6 +1,6 @@
 import React from "react";
 
-import { StaticQuery, graphql } from "gatsby";
+import { StaticQuery, graphql, Link } from "gatsby";
 import { RichText } from "prismic-reactjs";
 import { FooterDiv, FooterLinks } from "./Footer.styles"
 import {
@@ -25,7 +25,9 @@ const Footer = ({ lang }) => {
 
                 return (
                   <div key={index}>
-                    <RichText render={node.node.footer_title} />
+                    <Link to="/">
+                      <RichText render={node.node.footer_title} />
+                    </Link>
                     <RichText render={node.node.footer_description} />
                     <p>{node.node.footer_content}</p>
                   </div>

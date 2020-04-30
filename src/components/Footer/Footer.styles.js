@@ -15,10 +15,15 @@ export const FooterDiv = styled.div`
     color: black;
     padding: 10px;
   }
+  
+  p {
+    margin-top: 0;
+    padding-top: 0;
+  }
 
   h1 {
     font-size: 1.5em;
-    margin: 6px 0;
+    margin: 6px 0 0 0;
   }
 `;
 

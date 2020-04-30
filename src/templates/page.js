@@ -9,7 +9,7 @@ import get from "lodash/get"
 const Page = ({ data }) => {
 
   const body = get(data, 'prismic.allPages.edges.0.node.body', []);
-  const page = get(data, 'prismic.allPages.edges.0..node._meta.uid', 'page');
+  const page = get(data, 'prismic.allPages.edges.0.node._meta.uid', 'Sivu');
 
   return (
     <Layout>
@@ -32,6 +32,10 @@ const Page = ({ data }) => {
 
         { body.map((body,index) => {
 
+          if (body.type === 'hero') {
+            return <RichText key={index} render={body.primary.page_content}/>
+          }
+
           if (body.type === 'link_category') {
             return (
               <React.Fragment key={index}>
@@ -52,9 +56,6 @@ const Page = ({ data }) => {
             )
           }
 
-          if (body.type === 'hero') {
-            return <RichText key={index} render={body.primary.page_content}/>
-          }
           return null;
         })}
 

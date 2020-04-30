@@ -9,6 +9,7 @@ import LeftIcon from "../images/arrow-left.svg"
 import RightIcon from "../images/arrow-right.svg"
 import SliceZone from "../components/SliceZone"
 import { linkResolver } from "gatsby-source-prismic-graphql"
+import SEO from "../components/seo"
 
 export const PageNavigationWrapper = styled.div`
   display: flex;
@@ -42,9 +43,7 @@ export const query = graphql`
     $paginationNextLang: String!
   ) {
     prismic {
-      allHistorypages(
-        uid: $uid
-      ) {
+      allHistorypages(uid: $uid) {
         edges {
           node {
             _meta {
@@ -117,12 +116,13 @@ const HistoryPage = props => {
     },
   } = props;
 
-  const title = get(props.data, 'prismic.allHistorypages.edges.0.node.title', []);
+  const title = get(props.data, 'prismic.allHistorypages.edges.0.node.body.primary.hero_title', 'historia');
   const content = get(props.data, 'prismic.allHistorypages.edges.0.node.history_content');
   const body = get(props.data, 'prismic.allHistorypages.edges.0.node.body', []);
 
   return (
     <Layout>
+      <SEO title={title} />
 
       <SliceZone
         body={body}
