@@ -112,6 +112,7 @@ const HistoryPage = props => {
   const {
     pageContext: { paginationPreviousMeta, paginationNextMeta },
     data: {
+      // eslint-disable-next-line
       prismic: { prevHistory, nextHistory },
     },
   } = props;
