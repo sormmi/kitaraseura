@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: `Kotkan kitaraseura ry`,
+    title: `Kotkan kitaraseura`,
     description: `Etelä-Kymenlaakson kitaramusiikin edistämiseksi.`,
     author: `@sormmi`,
   },

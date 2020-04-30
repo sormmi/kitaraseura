@@ -17,7 +17,7 @@ export const Branding = styled.div`
   min-width: 100px;
 
   a {
-    font-size: 20px;
+    font-size: 22px;
     color: ${ props => props.theme.colors.textDark };
     font-weight: bold;
     text-decoration: none;

@@ -97,6 +97,13 @@ export const GlobalStyles = createGlobalStyle`
     line-height: 1.5;
   }
   
+  hr {
+    margin-top: 30px;
+    border: none;
+    border-top: 1px solid #ccc;
+    /*border-top: 1px solid ${ props => props.theme.colors.textMain };*/
+  }
+  
   a {
     line-height: 1.5;
     color: ${ props => props.theme.colors.textLink };
