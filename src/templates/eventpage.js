@@ -7,6 +7,7 @@ import { RichText } from "prismic-reactjs";
 import SliceZone from "../components/SliceZone"
 import get from "lodash/get"
 import CalendarIcon from "../images/calendar.svg"
+import formatDate from "../utils/formatDate"
 
 const EventWrapper = styled.div`
   display: grid;
@@ -80,7 +81,7 @@ const EventPage = ({ data }) => {
                   <EventFieldHeader>
                     <DateWrapper>
                       <img src={CalendarIcon} alt="date"/>
-                      {event.node.event_date}
+                      {formatDate(event.node.event_date)}
                     </DateWrapper>
                     <EventLocation>{event.node.event_location}</EventLocation>
                   </EventFieldHeader>
