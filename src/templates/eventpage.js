@@ -59,6 +59,7 @@ const EventPage = ({ data }) => {
 
   const body = get(data, 'prismic.allEventpages.edges.0.node.body', []);
   const page = get(data, 'prismic.allEventpages.edges.0.node._meta.uid', 'tapahtumat');
+  const events = get(data, 'prismic.allEvents.edges', []);
 
   return (
     <Layout>
@@ -71,38 +72,26 @@ const EventPage = ({ data }) => {
 
       <div className="container">
 
-        { body.map((body,index) => {
+          <EventWrapper>
+            {events.map((event,index) => (
 
-          if (body.type === 'event_group') {
-            return (
-              <EventWrapper key={index}>
-                { body.fields.map((field, i) => (
+                <EventFields key={index}>
 
-                    <EventFields key={i}>
+                  <EventFieldHeader>
+                    <DateWrapper>
+                      <img src={CalendarIcon} alt="date"/>
+                      {event.node.event_date}
+                    </DateWrapper>
+                    <EventLocation>{event.node.event_location}</EventLocation>
+                  </EventFieldHeader>
 
-                      <EventFieldHeader>
-                        <DateWrapper>
-                          <img src={CalendarIcon} alt="date"/>
-                          {field.event.event_date}
-                        </DateWrapper>
-                        <EventLocation>{field.event.event_location}</EventLocation>
-                      </EventFieldHeader>
+                  <div>{event.node.event_name}</div>
+                  <RichText render={event.node.event_description} />
+                </EventFields>
 
-                      <div>{field.event.event_name}</div>
-                      <RichText render={field.event.event_description} />
-                    </EventFields>
+            )) }
+          </EventWrapper>
 
-                )) }
-              </EventWrapper>
-            )
-          }
-
-          if (body.type === 'hero') {
-            return <p key={index}>{body.primary.page_content.text}</p>
-          }
-
-          return null;
-        })}
 
       </div>
     </Layout>
@@ -126,24 +115,20 @@ export const query = graphql`
                 primary {
                   hero_content
                   hero_title
-                  page_content
                   background_image
                 }
               }
-              ... on PRISMIC_EventpageBodyEvent_group {
-                type
-                fields {
-                  event {
-                    ... on PRISMIC_Event {
-                      event_date
-                      event_name
-                      event_description
-                      event_location
-                    }
-                  }
-                }
-              }
             }
+          }
+        }
+      }
+      allEvents(sortBy: event_date_DESC) {
+        edges {
+          node {
+            event_date
+            event_description
+            event_location
+            event_name
           }
         }
       }

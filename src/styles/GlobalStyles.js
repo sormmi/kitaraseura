@@ -101,7 +101,6 @@ export const GlobalStyles = createGlobalStyle`
     margin-top: 30px;
     border: none;
     border-top: 1px solid #ccc;
-    /*border-top: 1px solid ${ props => props.theme.colors.textMain };*/
   }
   
   a {
