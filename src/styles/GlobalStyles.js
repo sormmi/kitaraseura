@@ -131,4 +131,12 @@ export const GlobalStyles = createGlobalStyle`
     position: relative;
     min-height: 100vh;
   }
+  
+  .container-links-grid {
+    display: grid;
+    justify-content: space-around;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    max-width: 920px;
+  }
 `

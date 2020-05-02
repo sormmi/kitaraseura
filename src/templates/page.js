@@ -6,6 +6,7 @@ import SliceZone from "../components/SliceZone"
 import { RichText } from "prismic-reactjs"
 import get from "lodash/get"
 
+
 const Page = ({ data }) => {
 
   const body = get(data, 'prismic.allPages.edges.0.node.body', []);
@@ -20,14 +21,13 @@ const Page = ({ data }) => {
         page={page}
       />
 
-      <div className="container">
+      <div className={page === 'linkit' ? 'container-links-grid' : 'container'}>
 
         { page === 'linkit' && (
-          <>
+          <div>
             <h2>Kitaraseuran jäsenyys</h2>
             <Link to="/liity-jaseneksi">Liity jäsenksi</Link>
-            <hr/>
-          </>
+          </div>
         )}
 
         { body.map((body,index) => {
@@ -38,7 +38,7 @@ const Page = ({ data }) => {
 
           if (body.type === 'link_category') {
             return (
-              <React.Fragment key={index}>
+              <div key={index}>
 
                 <RichText render={body.primary.link_category_title} />
                 { body.fields.map(field => (
@@ -52,10 +52,9 @@ const Page = ({ data }) => {
                   </div>
                 )) }
 
-              </React.Fragment>
+              </div>
             )
           }
-
           return null;
         })}
 
