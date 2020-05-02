@@ -138,5 +138,6 @@ export const GlobalStyles = createGlobalStyle`
     grid-template-columns: auto auto;
     gap: 20px;
     max-width: 920px;
+    margin: 0 auto;
   }
 `
