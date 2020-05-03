@@ -139,5 +139,6 @@ export const GlobalStyles = createGlobalStyle`
     gap: 20px;
     max-width: 920px;
     margin: 0 auto;
+    padding: 20px;
   }
 `
