@@ -26,15 +26,11 @@ const Page = ({ data }) => {
         { page === 'linkit' && (
           <div>
             <h2>Kitaraseuran jäsenyys</h2>
-            <Link to="/liity-jaseneksi">Liity jäsenksi</Link>
+            <Link to="/liity-jaseneksi">Liity jäseneksi</Link>
           </div>
         )}
 
         { body.map((body,index) => {
-
-          if (body.type === 'hero') {
-            return <RichText key={index} render={body.primary.page_content}/>
-          }
 
           if (body.type === 'link_category') {
             return (
@@ -55,6 +51,11 @@ const Page = ({ data }) => {
               </div>
             )
           }
+
+          if (body.type === 'hero' && body.primary.page_content[0].text !== "") {
+            return <RichText key={index} render={body.primary.page_content}/>
+          }
+
           return null;
         })}
 
@@ -89,7 +90,6 @@ export const query = graphql`
               }
               ... on PRISMIC_PageBodyHero {
                 type
-                label
                 primary {
                   hero_content
                   hero_title

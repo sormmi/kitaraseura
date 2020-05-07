@@ -141,4 +141,9 @@ export const GlobalStyles = createGlobalStyle`
     margin: 0 auto;
     padding: 20px;
   }
+  
+  .container-links-grid :first-child {
+      grid-column-end: span 2;
+  }
+  
 `
